@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Gabaritando</string>
+    <string name="btnLogin">Botao Logar</string>
+    <string name="login">Login</string>
+    <string name="editEmail">Email</string>
+    <string name="editSenha">Senha</string>
+
+    <string name="btnRegister">Botao Cadastrar</string>
+    <string name="register">Cadastrar</string>
+    <string name="recover">Esqueceu sua senha</string>
+
+    <string name="userName">Nome do usuario</string>
+    <string name="btnGabaritos">Botao Gabaritos</string>
+    <string name="gabaritos">Gabaritos</string>
+    <string name="btnTurmas">Bota Turmas</string>
+    <string name="turmas">Turmas</string>
+    <string name="btncontato">Botao Contato</string>
+    <string name="contato">Contato</string>
+    <string name="title_activity_home">Home</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_alunos">Alunos</string>
+
+    <string-array name="nameList">
+        <item>Igor</item>
+        <item>Fernando</item>
+        <item>Elsinho</item>
+        <item>LadyGaga</item>
+    </string-array>
+
+    <string-array name="raList">
+        <item>20710348</item>
+        <item>20202020</item>
+        <item>66666666</item>
+        <item>20694776</item>
+    </string-array>
+
+</resources>

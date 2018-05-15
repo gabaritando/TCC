@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@android:drawable/presence_invisible"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_turma"
+            android:icon="@android:drawable/presence_invisible"
+            android:title="Turma" />
+        <item
+            android:id="@+id/nav_gabarito"
+            android:icon="@android:drawable/presence_invisible"
+            android:title="Gabarito" />
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon="@android:drawable/presence_invisible"
+            android:title="Perfil" />
+    </group>
+
+    <item android:title="Mais">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@android:drawable/presence_invisible"
+                android:title="Compartilhe" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@android:drawable/presence_invisible"
+                android:title="Sair" />
+        </menu>
+    </item>
+
+</menu>

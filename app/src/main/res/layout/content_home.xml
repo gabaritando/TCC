@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="br.edu.anhembi.gabaritando.Home"
+    tools:showIn="@layout/app_bar_home">
+
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="userName123"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        tools:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="20dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="38dp"
+        android:layout_height="36dp"
+        app:srcCompat="@drawable/user"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        app:layout_constraintRight_toLeftOf="@+id/userName"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp" />
+
+    <Button
+        android:id="@+id/btnGabaritos"
+        android:layout_width="275dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="150dp"
+        android:background="@android:color/holo_orange_dark"
+        android:text="GABARITOS"
+        android:textColor="@android:color/white"
+        android:textColorLink="@android:color/holo_orange_dark"
+        android:textSize="25sp"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnTurmas"
+        android:layout_width="275dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:background="@android:color/holo_orange_dark"
+        android:text="TURMAS"
+        android:textColor="@android:color/white"
+        android:textColorLink="@android:color/holo_orange_dark"
+        android:textSize="25sp"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGabaritos" />
+
+    <Button
+        android:id="@+id/btnAlunos"
+        android:layout_width="275dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:background="@android:color/holo_orange_dark"
+        android:text="ALUNOS"
+        android:textColor="@android:color/white"
+        android:textColorLink="@android:color/holo_orange_dark"
+        android:textSize="25sp"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTurmas" />
+
+</android.support.constraint.ConstraintLayout>
