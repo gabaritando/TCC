@@ -17,10 +17,10 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/editSenha2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnRegister"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="175dp"
         android:layout_height="50dp"
@@ -33,13 +33,13 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4"
+        app:layout_constraintTop_toBottomOf="@+id/editSenha2"
         tools:textAllCaps="false" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/editSenha2"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="47dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Confirmar Senha"
@@ -50,10 +50,10 @@
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
+        app:layout_constraintTop_toBottomOf="@+id/editSenha" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/editSenha"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -66,12 +66,12 @@
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintTop_toBottomOf="@+id/editMail" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/editMail"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="49dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="E-mail"
@@ -82,10 +82,10 @@
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/editNome" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editNome"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -113,5 +113,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 
 </android.support.constraint.ConstraintLayout>

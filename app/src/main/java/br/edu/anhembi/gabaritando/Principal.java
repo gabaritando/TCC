@@ -60,7 +60,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
                         url = "http://192.168.0.100:8080/login/logar.php";
                         new SolicitaDados().execute(url);
 
-                        //parametros = "email = "
+                        parametros = "email = " + email + "senha = " + senha;
                     }
 
                 } else {
@@ -77,16 +77,27 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     private class SolicitaDados extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
-            try {
-                return Conexao.postDados(urls[0], parametros);
-            } catch (IOException e) {
-                return "Unable to retrieve web page. URL may be invalid";
+
+            return Conexao.postDados(urls[0], parametros);
+
+        }
+
+        protected void onPostExecute(String result) {
+            //chamando a activity apos login
+            if (result.contains("login_ok")) {
+                Intent abreinicio = new Intent(Principal.this, Home.class);
+                startActivity(abreinicio);
+            } else {
+                Toast.makeText(getApplicationContext(), "Usuario ou senha estao incorretos", Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    protected void onPostExecute(String result) {
-        //textView.setText(result);
+    //caso a tela do celuar for desligada ou trocar de tela o app ele fecha
+    @Override
+    protected void onPause(){
+        super.onPause();
+        finish();
     }
 
     @Override
