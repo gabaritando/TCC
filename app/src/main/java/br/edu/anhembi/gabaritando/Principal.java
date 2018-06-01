@@ -11,17 +11,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import br.edu.anhembi.gabaritando.CRUD.Create;
+import br.edu.anhembi.gabaritando.CRUD.Read;
 
 public class Principal extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btRegister, btnLogin;
-
-    String url = "";
-    String parametros = "";
-    EditText editEmail1, editSenha1;
+    Button btnRegister, btnLogin;
+    TextView editEmail, editSenha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,79 +31,41 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         Log.i("RAM", "Tela Principal: onCreate");
         setContentView(R.layout.activity_principal);
 
-        btRegister = (Button) findViewById(R.id.btnregister);
-        btRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent register = new Intent(Principal.this,Register.class);
-                startActivity(register);
-            }
-        });
-
-        editEmail1 = (EditText)findViewById(R.id.editEmail);
-        editSenha1 = (EditText)findViewById(R.id.editSenha);
-
+        btnRegister = (Button) findViewById(R.id.btnRegister);
         btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                ConnectivityManager connectivityManager =
-                        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        editEmail = (EditText) findViewById(R.id.editEmail);
+        editSenha = (EditText) findViewById(R.id.editSenha);
 
-                if (networkInfo != null && networkInfo.isConnected()){
-                    String email = editEmail1.getText().toString();
-                    String senha = editSenha1.getText().toString();
+        btnRegister.setOnClickListener(this);
+        btnLogin.setOnClickListener(this);
 
-                    if (email.isEmpty() || senha.isEmpty()) {
-                        Toast.makeText(getApplicationContext(), "Nenhum campo pode estar vazio", Toast.LENGTH_LONG).show();
-                    } else {
-                        url = "http://192.168.0.100:8080/login/logar.php";
-                        new SolicitaDados().execute(url);
+        Create c = new Create(getApplicationContext());
+        c.createTable();
 
-                        parametros = "email = " + email + "senha = " + senha;
-                    }
+    }
 
-                } else {
-                    Toast.makeText(getApplicationContext(), "Nenhuma conexão foi detectada", Toast.LENGTH_LONG).show();
-                }
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.btnRegister){
+            Intent register = new Intent(this, Register.class);
+            startActivity(register);
+        } else if (view.getId() == R.id.btnLogin){
+            Read r = new Read(getApplicationContext());
+            ArrayList<Docente> dArray = r.getDocentes();
 
-                Intent telaHome = new Intent(Principal.this, Home.class);
+            for (int i = 0; i < dArray.size(); i++) {
+                Docente d = dArray.get(i);
+                System.out.println("Nome: " + d.getNome() + " Email: " + d.getEmail() + " Senha: " + d.getSenha());
+            }
+
+            if (r.validaSenha(editEmail.getText().toString(), editSenha.getText().toString())){
+                Intent telaHome = new Intent(this, Home.class);
                 startActivity(telaHome);
-            }
-        });
-
-    }
-
-    private class SolicitaDados extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
-
-            return Conexao.postDados(urls[0], parametros);
-
-        }
-
-        protected void onPostExecute(String result) {
-            //chamando a activity apos login
-            if (result.contains("login_ok")) {
-                Intent abreinicio = new Intent(Principal.this, Home.class);
-                startActivity(abreinicio);
+                Toast.makeText(this, "Usuário logado com sucesso!", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), "Usuario ou senha estao incorretos", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Usuário ou senha incorreto!", Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-    //caso a tela do celuar for desligada ou trocar de tela o app ele fecha
-    @Override
-    protected void onPause(){
-        super.onPause();
-        finish();
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 }
