@@ -13,7 +13,7 @@ import br.edu.anhembi.gabaritando.Docente;
 public class Read extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "DB_GABARITANDO";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 1;
     private static final String TB_DOCENTE = "TB_DOCENTE";
 
     private static final String DB_PATH = "/data/user/0/br.edu.anhembi.gabaritando/database/DB_GABARITANDO";
@@ -68,11 +68,11 @@ public class Read extends SQLiteOpenHelper {
 
     public boolean validaSenha(String email, String senha) {
         openDB();
-        String query = "SELECT * FROM " + TB_DOCENTE + " WHERE email = '" + email + "' AND senha = '" + senha + "'";
-        System.out.println(query);
+        String validaSenha = "SELECT * FROM " + TB_DOCENTE + " WHERE email = '" + email + "' AND senha = '" + senha + "'";
+        System.out.println(validaSenha);
 
         try{
-            Cursor c = db.rawQuery(query, null);
+            Cursor c = db.rawQuery(validaSenha, null);
             System.out.println("Query de validação executada");
             if (c.getCount() == 1) {
                 return true;

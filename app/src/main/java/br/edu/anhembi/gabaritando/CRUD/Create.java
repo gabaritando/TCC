@@ -18,6 +18,7 @@ public class Create extends SQLiteOpenHelper {
     public Create(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         this.mContext = context;
+        db = getWritableDatabase();
     }
 
 
@@ -33,7 +34,9 @@ public class Create extends SQLiteOpenHelper {
     }
 
     public boolean createTable () {
+
         openDB();
+
         String createTable = "CREATE TABLE IF NOT EXISTS " + TB_DOCENTE + " ("
                 + "NOME TEXT, "
                 + "EMAIL TEXT, "

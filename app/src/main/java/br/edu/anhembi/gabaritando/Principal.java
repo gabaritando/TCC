@@ -27,6 +27,8 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         Log.i("RAM", "Tela Principal: onCreate");
         setContentView(R.layout.activity_principal);
