@@ -7,7 +7,7 @@
 
     <string name="btnRegister">Botao Cadastrar</string>
     <string name="register">Cadastrar</string>
-    <string name="recover">Esqueceu sua senha</string>
+    <string name="recuperarSenha">Esqueceu sua senha</string>
 
     <string name="userName">Nome do usuario</string>
     <string name="btnGabaritos">Botao Gabaritos</string>

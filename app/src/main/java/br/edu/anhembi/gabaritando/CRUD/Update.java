@@ -54,23 +54,44 @@ public class Update extends SQLiteOpenHelper {
         }
     }
 
-    public boolean updateDocente (Docente d){
-        openDB();
-        try {
-            String where = "EMAIL = '" + d.getEmail() + "'";
-            ContentValues cv = new ContentValues();
-            cv.put("NOME", d.getNome());
-            cv.put("EMAIL", d.getEmail());
-            cv.put("SENHA", d.getSenha());
-            db.update(TB_DOCENTE, cv, where, null);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            db.close();
-        }
-    }
+//  Método para alterar informação de determinado usuário
+
+//    public boolean updateDocente (Docente d){
+//        openDB();
+//        try {
+//            String where = "EMAIL = '" + d.getEmail() + "'";
+//            ContentValues cv = new ContentValues();
+//            cv.put("NOME", d.getNome());
+//            cv.put("EMAIL", d.getEmail());
+//            cv.put("SENHA", d.getSenha());
+//            db.update(TB_DOCENTE, cv, where, null);
+//            return true;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return false;
+//        } finally {
+//            db.close();
+//        }
+//    }
+
+//  Método para deletar tabela
+
+//    public boolean deletarTabela () {
+//        openDB();
+//
+//        String deletarTabela = "DROP TABLE IF EXISTS " + TB_DOCENTE;
+//        try {
+//            db.execSQL(deletarTabela);
+//            System.out.println("DELETADA");
+//            return true;
+//        } catch (Exception e) {
+//            System.out.println("Erro ao deletar usuarios");
+//            e.printStackTrace();
+//            return false;
+//        } finally {
+//            db.close();
+//        }
+//    }
 
     private void openDB() {
      if(!db.isOpen()){

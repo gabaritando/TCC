@@ -61,13 +61,7 @@ public class Read extends SQLiteOpenHelper {
         }
     }
 
-    private void openDB() {
-     if(!db.isOpen()){
-         db = mContext.openOrCreateDatabase(DB_PATH, SQLiteDatabase.OPEN_READWRITE, null);
-     }
-
-    }
-}
+//  Método para retornar um arraylist dos usuários cadastrados no banco
 
 //    public ArrayList<Docente> getDocentes(){
 //        openDB();
@@ -80,9 +74,10 @@ public class Read extends SQLiteOpenHelper {
 //            if (c.moveToFirst()){
 //                do {
 //                    Docente d = new Docente();
-//                    d.setNome(c.getString(0));
-//                    d.setEmail(c.getString(1));
-//                    d.setSenha(c.getString(2));
+//                    d.setId(c.getInt(0));
+//                    d.setNome(c.getString(1));
+//                    d.setEmail(c.getString(2));
+//                    d.setSenha(c.getString(3));
 //                    dArray.add(d);
 //                } while(c.moveToNext());
 //            }
@@ -97,10 +92,10 @@ public class Read extends SQLiteOpenHelper {
 //        return dArray;
 //    }
 
-// Retornar todos os docentes cadastrados no banco de dados
-//            ArrayList<Docente> dArray = r.getDocentes();
-//
-//            for (int i = 0; i < dArray.size(); i++) {
-//                Docente d = dArray.get(i);
-//                System.out.println("Nome: " + d.getNome() + " Email: " + d.getEmail() + " Senha: " + d.getSenha());
-//            }
+    private void openDB() {
+     if(!db.isOpen()){
+         db = mContext.openOrCreateDatabase(DB_PATH, SQLiteDatabase.OPEN_READWRITE, null);
+     }
+
+    }
+}

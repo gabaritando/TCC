@@ -38,12 +38,12 @@ public class Create extends SQLiteOpenHelper {
         openDB();
 
         String createTable = "CREATE TABLE IF NOT EXISTS " + TB_DOCENTE + " ("
+                + "ID_USER INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
                 + "NOME TEXT, "
                 + "EMAIL TEXT, "
                 + "SENHA TEXT)";
         try {
             db.execSQL(createTable);
-            System.out.println("Database criada com sucesso: " + TB_DOCENTE);
             return true;
         } catch (Exception e) {
             System.out.println("Erro ao criar a database");
