@@ -54,12 +54,6 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
             startActivity(register);
         } else if (view.getId() == R.id.btnLogin){
             Read r = new Read(getApplicationContext());
-            ArrayList<Docente> dArray = r.getDocentes();
-
-            for (int i = 0; i < dArray.size(); i++) {
-                Docente d = dArray.get(i);
-                System.out.println("Nome: " + d.getNome() + " Email: " + d.getEmail() + " Senha: " + d.getSenha());
-            }
 
             if (r.validaSenha(editEmail.getText().toString(), editSenha.getText().toString())){
                 Intent telaHome = new Intent(this, Home.class);

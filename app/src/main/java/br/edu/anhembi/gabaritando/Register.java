@@ -62,8 +62,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             } else {
                 Toast.makeText(this, "Erro ao cadastrar usuário!", Toast.LENGTH_SHORT).show();
             }
-
-
         }
     }
 

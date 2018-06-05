@@ -39,33 +39,6 @@ public class Read extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<Docente> getDocentes(){
-        openDB();
-        ArrayList<Docente> dArray = new ArrayList<>();
-        String getDocentes = "SELECT * FROM " + TB_DOCENTE;
-
-        try{
-            Cursor c = db.rawQuery(getDocentes, null);
-
-            if (c.moveToFirst()){
-                do {
-                    Docente d = new Docente();
-                    d.setNome(c.getString(0));
-                    d.setEmail(c.getString(1));
-                    d.setSenha(c.getString(2));
-                    dArray.add(d);
-                } while(c.moveToNext());
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-            return null;
-        } finally {
-            db.close();
-        }
-
-        return dArray;
-    }
-
     public boolean validaSenha(String email, String senha) {
         openDB();
         String validaSenha = "SELECT * FROM " + TB_DOCENTE + " WHERE email = '" + email + "' AND senha = '" + senha + "'";
@@ -95,3 +68,39 @@ public class Read extends SQLiteOpenHelper {
 
     }
 }
+
+//    public ArrayList<Docente> getDocentes(){
+//        openDB();
+//        ArrayList<Docente> dArray = new ArrayList<>();
+//        String getDocentes = "SELECT * FROM " + TB_DOCENTE;
+//
+//        try{
+//            Cursor c = db.rawQuery(getDocentes, null);
+//
+//            if (c.moveToFirst()){
+//                do {
+//                    Docente d = new Docente();
+//                    d.setNome(c.getString(0));
+//                    d.setEmail(c.getString(1));
+//                    d.setSenha(c.getString(2));
+//                    dArray.add(d);
+//                } while(c.moveToNext());
+//            }
+//
+//        } catch (Exception e){
+//            e.printStackTrace();
+//            return null;
+//        } finally {
+//            db.close();
+//        }
+//
+//        return dArray;
+//    }
+
+// Retornar todos os docentes cadastrados no banco de dados
+//            ArrayList<Docente> dArray = r.getDocentes();
+//
+//            for (int i = 0; i < dArray.size(); i++) {
+//                Docente d = dArray.get(i);
+//                System.out.println("Nome: " + d.getNome() + " Email: " + d.getEmail() + " Senha: " + d.getSenha());
+//            }
