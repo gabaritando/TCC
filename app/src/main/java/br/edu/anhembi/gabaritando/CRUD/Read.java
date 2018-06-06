@@ -60,6 +60,27 @@ public class Read extends SQLiteOpenHelper {
             db.close();
         }
     }
+    public boolean checaEmail(String email) {
+        openDB();
+        String checaEmail = "SELECT EMAIL FROM " + TB_DOCENTE + " WHERE EMAIL = '" + email + "'";
+        System.out.println(checaEmail);
+          try{
+            Cursor c = db.rawQuery(checaEmail, null);
+            System.out.println("Query de validação executada");
+            if (c.getCount() == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Erro ao executar query de validação");
+            return false;
+        } finally {
+            db.close();
+        }
+    }
+
 
 //  Método para retornar um arraylist dos usuários cadastrados no banco
 

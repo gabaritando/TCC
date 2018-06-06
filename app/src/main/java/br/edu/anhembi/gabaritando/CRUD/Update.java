@@ -37,6 +37,7 @@ public class Update extends SQLiteOpenHelper {
 
     }
 
+
     public boolean insertDocente (Docente d){
         openDB();
         try {

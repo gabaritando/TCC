@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import br.edu.anhembi.gabaritando.CRUD.Read;
 import br.edu.anhembi.gabaritando.CRUD.Update;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
@@ -39,12 +40,16 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View view) {
 
+        Read r = new Read(getApplicationContext());
         if (!editSenha.getText().toString().equals(editSenha2.getText().toString())) {
             Toast.makeText(this, "Senhas não correspondem!", Toast.LENGTH_SHORT).show();
-        } else if (editSenha.getText().length() < 6) {
+        }   else if (editSenha.getText().length() < 6) {
             editSenha.setError("Para a senha é necessário conter mais de 6 caracteres!");
             editSenha.requestFocus();
             editSenha2.requestFocus();
+        } else if (r.checaEmail(editEmail.getText().toString())){
+            editEmail.setError("E-mail ja registrado!");
+
         } else {
             Docente d = new Docente();
 

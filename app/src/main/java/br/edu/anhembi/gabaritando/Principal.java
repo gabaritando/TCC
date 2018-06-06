@@ -17,6 +17,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     Button btnRegister, btnLogin;
     EditText editEmail, editSenha;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
