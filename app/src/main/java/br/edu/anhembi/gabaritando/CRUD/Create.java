@@ -41,7 +41,8 @@ public class Create extends SQLiteOpenHelper {
                 + "ID_USER INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
                 + "NOME TEXT, "
                 + "EMAIL TEXT, "
-                + "SENHA TEXT)";
+                + "SENHA TEXT,"
+                + "unique (EMAIL)) ";
         try {
             db.execSQL(createTable);
             return true;
