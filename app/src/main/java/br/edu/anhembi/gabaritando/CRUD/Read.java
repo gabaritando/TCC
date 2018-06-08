@@ -82,6 +82,31 @@ public class Read extends SQLiteOpenHelper {
     }
 
 
+    public String selectNome (String email) {
+        openDB();
+        String selectNome = "SELECT NOME FROM " + TB_DOCENTE + " WHERE EMAIL = '" + email + "'";
+        String nome;
+        System.out.println(selectNome);
+        try{
+            Cursor c = db.rawQuery(selectNome, null);
+
+            System.out.println("Query de validação executada");
+            if (c.moveToFirst()) {
+                nome = c.getString(0);
+                return nome;
+            } else {
+                return "Erro ao carregar Nome";
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Erro ao executar query de validação");
+            return "0";
+        } finally {
+            db.close();
+        }
+    }
+
+
 //  Método para retornar um arraylist dos usuários cadastrados no banco
 
 //    public ArrayList<Docente> getDocentes(){

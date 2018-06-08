@@ -17,10 +17,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import br.edu.anhembi.gabaritando.CRUD.Read;
+
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     TextView nomeHome;
     private Button btnGabaritos, btnTurmas, btnAlunos;
-
+    //private String exibirNome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +34,22 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         nomeHome = (TextView) findViewById(R.id.txtNomeHome);
-        nomeHome.setText("Teste");
 
+
+
+        String emailHome = getIntent().getExtras().getString("exibirNome");//recebebdno o email do usuario
+        Read r = new Read(getApplicationContext());
+
+        //esse trecho de codigo seleciona apenas o primeiro nome do usuario
+        String exibirNome = r.selectNome(emailHome);
+        String pattern = "\\S+";
+
+        Pattern pt = Pattern.compile(pattern);
+        Matcher m = pt.matcher(exibirNome);
+        if (m.find( )) {
+            nomeHome.setText(m.group(0));
+        }
+        //fim da selecao do primeiro nome
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

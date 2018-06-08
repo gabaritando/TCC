@@ -51,6 +51,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
 
             if (r.validaSenha(editEmail.getText().toString(), editSenha.getText().toString())) {
                 Intent telaHome = new Intent(this, Home.class);
+                telaHome.putExtra("exibirNome",editEmail.getText().toString());
                 startActivity(telaHome);
                 Toast.makeText(this, "Usuário logado com sucesso!", Toast.LENGTH_SHORT).show();
             } else {
