@@ -10,7 +10,7 @@
 
 
     <TextView
-        android:id="@+id/userName"
+        android:id="@+id/txtNomeHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="userName123"
@@ -30,7 +30,7 @@
         app:srcCompat="@drawable/user"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="30dp"
-        app:layout_constraintRight_toLeftOf="@+id/userName"
+        app:layout_constraintRight_toLeftOf="@+id/txtNomeHome"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp" />
 

@@ -13,90 +13,61 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Register extends AppCompatActivity {
+import br.edu.anhembi.gabaritando.CRUD.Read;
+import br.edu.anhembi.gabaritando.CRUD.Update;
 
-    EditText editNome, editMail, editSenha, editSenha2;
-    TextView textTermos;
+public class Register extends AppCompatActivity implements View.OnClickListener {
+
+    EditText editNome, editEmail, editSenha, editSenha2;
     Button btnRegister;
-
-
-    String url = "";
-    String parametros = "";
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        editNome = (EditText)findViewById(R.id.editNome);
-        editMail = (EditText)findViewById(R.id.editMail);
-        editSenha = (EditText)findViewById(R.id.editSenha);
-        editSenha2 = (EditText)findViewById(R.id.editSenha2);
-        btnRegister = (Button)findViewById(R.id.btnRegister);
+        editNome = (EditText) findViewById(R.id.editNome);
+        editEmail = (EditText) findViewById(R.id.editEmail);
+        editSenha = (EditText) findViewById(R.id.editSenha);
+        editSenha2 = (EditText) findViewById(R.id.editSenha2);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
 
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ConnectivityManager connectivityManager =
-                        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-
-                if (networkInfo != null && networkInfo.isConnected()){
-                    String nome = editNome.getText().toString();
-                    String email = editMail.getText().toString();
-                    String senha = editSenha2.getText().toString();
-
-
-                    if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
-                        Toast.makeText(getApplicationContext(), "Nenhum campo pode estar vazio", Toast.LENGTH_LONG).show();
-                    } else {
-
-                        url = "http://192.168.0.100:8080/login/registrar.php";
-
-                        parametros =  "nome=" + nome +"&email=" + email + "&senha=" + senha;
-                        new SolicitaDados().execute(url);
-                    }
-
-                } else {
-                    Toast.makeText(getApplicationContext(), "Nenhuma conexão foi detectada", Toast.LENGTH_LONG).show();
-                }
-
-            }
-        });
-
+        btnRegister.setOnClickListener(this);
 
     }
-    private class SolicitaDados extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
-
-            return Conexao.postDados(urls[0], parametros);
-
-        }
-
-        protected void onPostExecute(String result) {
-
-            if(result.contains("email_erro")){
-                Toast.makeText(getApplicationContext(), "Este emaiol ja esta registrado", Toast.LENGTH_LONG).show();
-
-            }else if (result.contains("registro_ok")) {
-                Intent abreinicio = new Intent(Register.this, Principal.class);
-                Toast.makeText(getApplicationContext(), "Registro concluido com sucesso!", Toast.LENGTH_LONG).show();
-                startActivity(abreinicio);
-            } else {
-                Toast.makeText(getApplicationContext(), "Ocorreu um erro!", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
 
     @Override
-    protected void onPause(){
-        super.onPause();
-        finish();
+    public void onClick(View view) {
+
+        Read r = new Read(getApplicationContext());
+        if (!editSenha.getText().toString().equals(editSenha2.getText().toString())) {
+            Toast.makeText(this, "Senhas não correspondem!", Toast.LENGTH_SHORT).show();
+        }   else if (editSenha.getText().length() < 6) {
+            editSenha.setError("Para a senha é necessário conter mais de 6 caracteres!");
+            editSenha.requestFocus();
+            editSenha2.requestFocus();
+        } else if (r.checaEmail(editEmail.getText().toString())){
+            editEmail.setError("E-mail ja registrado!");
+
+        } else {
+            Docente d = new Docente();
+
+            d.setNome(editNome.getText().toString());
+            d.setEmail(editEmail.getText().toString());
+            d.setSenha(editSenha.getText().toString());
+
+            Update u = new Update(getApplicationContext());
+
+            if (u.insertDocente(d)) {
+                Toast.makeText(this, "Usuário cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                Intent telaPrincipal = new Intent(this, Principal.class);
+                startActivity(telaPrincipal);
+            } else {
+                Toast.makeText(this, "Erro ao cadastrar usuário!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
+
 }
