@@ -33,7 +33,7 @@ public class Alunos extends AppCompatActivity implements AdapterView.OnItemClick
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Em manutencao", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -48,10 +48,6 @@ public class Alunos extends AppCompatActivity implements AdapterView.OnItemClick
                 (this, R.array.raList, android.R.layout.simple_list_item_1);
         ArrayAdapter<CharSequence> turmaAdapter = ArrayAdapter.createFromResource
                 (this, R.array.turmaList, android.R.layout.simple_list_item_1);
-
-        nameAdapter.add("Igor");
-        raAdapter.add("20710348");
-        turmaAdapter.add("CCONOVO");
 
         nameList.setAdapter(nameAdapter);
         raList.setAdapter(raAdapter);
