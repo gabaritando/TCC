@@ -24,7 +24,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_alunos">Alunos</string>
 
-    <string-array name="nameList">
+    <!--<string-array name="nameList">
         <item>Igor</item>
         <item>Fernando</item>
         <item>Elsinho</item>
@@ -37,5 +37,12 @@
         <item>66666666</item>
         <item>20694776</item>
     </string-array>
+
+    <string-array name="turmaList">
+        <item>CCONOVO</item>
+        <item>CCONOVO</item>
+        <item>CCONOVO</item>
+        <item>MODANOPAU</item>
+    </string-array>-->
 
 </resources>
