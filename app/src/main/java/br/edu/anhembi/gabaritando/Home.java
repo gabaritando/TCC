@@ -17,15 +17,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import br.edu.anhembi.gabaritando.CRUD.Read;
 
-public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    TextView nomeHome;
+public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+
     private Button btnGabaritos, btnTurmas, btnAlunos;
-    //private String exibirNome;
+    TextView nomeHome, navNomeHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
 
-        String emailHome = getIntent().getExtras().getString("exibirNome");//recebebdno o email do usuario
+        String emailHome = getIntent().getExtras().getString("exibirNome"); //recebendo o nome do usuario
         Read r = new Read(getApplicationContext());
 
         //esse trecho de codigo seleciona apenas o primeiro nome do usuario
@@ -46,20 +48,23 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         Pattern pt = Pattern.compile(pattern);
         Matcher m = pt.matcher(exibirNome);
+
         if (m.find( )) {
             nomeHome.setText(m.group(0));
         }
+
+
         //fim da selecao do primeiro nome
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -69,34 +74,36 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View hview = navigationView.getHeaderView(0);
 
         btnGabaritos = (Button) findViewById(R.id.btnGabaritos);
-        btnGabaritos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent telaGabaritos = new Intent(Home.this, Gabaritos.class);
-                startActivity(telaGabaritos);
-            }
-        });
-
         btnTurmas = (Button) findViewById(R.id.btnTurmas);
-        btnTurmas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent telaTurmas = new Intent(Home.this, Turmas.class);
-                startActivity(telaTurmas);
-            }
-        });
-
         btnAlunos = (Button) findViewById(R.id.btnAlunos);
-        btnAlunos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent telaAlunos = new Intent(Home.this, Alunos.class);
-                startActivity(telaAlunos);
-            }
-        });
 
+        navNomeHome = (TextView) hview.findViewById(R.id.txtNavNomeHome);
+
+        btnGabaritos.setOnClickListener(this);
+        btnTurmas.setOnClickListener(this);
+        btnAlunos.setOnClickListener(this);
+
+        navNomeHome.setText(exibirNome);
+
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.btnGabaritos){
+            Intent telaGabaritos = new Intent(Home.this, Gabaritos.class);
+            startActivity(telaGabaritos);
+        } else if(view.getId() == R.id.btnTurmas) {
+            Intent telaTurmas = new Intent(Home.this, Turmas.class);
+            startActivity(telaTurmas);
+        } else if(view.getId() == R.id.btnAlunos) {
+            Intent telaAlunos = new Intent(Home.this, Alunos.class);
+            startActivity(telaAlunos);
+        }
     }
 
     @Override
