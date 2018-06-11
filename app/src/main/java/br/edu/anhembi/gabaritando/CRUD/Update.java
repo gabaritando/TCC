@@ -7,12 +7,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import br.edu.anhembi.gabaritando.Docente;
+import br.edu.anhembi.gabaritando.Turmas;
 
 public class Update extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "DB_GABARITANDO";
     private static final int DB_VERSION = 1;
     private static final String TB_DOCENTE = "TB_DOCENTE";
+    private static final String TB_TURMAS = "TB_TURMAS";
 
     private static final String DB_PATH = "/data/user/0/br.edu.anhembi.gabaritando/database/DB_GABARITANDO";
     private Context mContext;
@@ -46,6 +48,23 @@ public class Update extends SQLiteOpenHelper {
             cv.put("EMAIL", d.getEmail());
             cv.put("SENHA", d.getSenha());
             db.insert(TB_DOCENTE, null, cv);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            db.close();
+        }
+    }
+
+    public boolean insertTurma (Turmas t){
+        openDB();
+        try {
+            ContentValues cv = new ContentValues();
+            cv.put("NOME_TURMA", t.getTurmaNome());
+            cv.put("UNIVERSIDADE_TURMA", t.getTurmaUniversidade());
+            cv.put("CAMPUS_TURMA", t.getTurmaCampus());
+            db.insert(TB_TURMAS, null, cv);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

@@ -15,8 +15,8 @@ public class Turmas extends AppCompatActivity implements AdapterView.OnItemClick
 
     private ListView turmasNomeList, universidadeList, campusList;
 
-    private int id, ra;
-    private String turma;
+    private int id;
+    private String turmaNome, turmaUniversidade, turmaCampus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,4 +66,35 @@ public class Turmas extends AppCompatActivity implements AdapterView.OnItemClick
         Toast.makeText(this, "Campus selecionado: " + item3, Toast.LENGTH_SHORT).show();
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTurmaNome() {
+        return turmaNome;
+    }
+
+    public void setTurmaNome(String turmaNome) {
+        this.turmaNome = turmaNome;
+    }
+
+    public String getTurmaUniversidade() {
+        return turmaUniversidade;
+    }
+
+    public void setTurmaUniversidade(String turmaUniversidade) {
+        this.turmaUniversidade = turmaUniversidade;
+    }
+
+    public String getTurmaCampus() {
+        return turmaCampus;
+    }
+
+    public void setTurmaCampus(String turmaCampus) {
+        this.turmaCampus = turmaCampus;
+    }
 }
