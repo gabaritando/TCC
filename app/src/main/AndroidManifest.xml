@@ -20,7 +20,6 @@
         </activity>
         <activity android:name=".Register" />
         <activity android:name=".Gabaritos" />
-        <activity android:name=".Turmas" />
         <activity
             android:name=".Home"
             android:icon="@android:drawable/ic_secure"
@@ -29,6 +28,10 @@
         <activity
             android:name=".Alunos"
             android:label="@string/title_activity_alunos"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Turmas"
+            android:label="@string/title_activity_turmas"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 

@@ -38,4 +38,12 @@
         <item>20694776</item>
     </string-array>
 
+    <string-array name="turmaList">
+        <item>CCONOVO</item>
+        <item>CCONOVO</item>
+        <item>CCONOVO</item>
+        <item>MODANOPAU</item>
+    </string-array>
+    <string name="title_activity_turmas">Turmas</string>
+
 </resources>

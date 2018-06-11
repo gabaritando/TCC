@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="br.edu.anhembi.gabaritando.Alunos"
-    tools:showIn="@layout/activity_alunos">
+    tools:context="br.edu.anhembi.gabaritando.Turmas"
+    tools:showIn="@layout/activity_turmas">
 
     <TextView
-        android:id="@+id/txtAlunosNome"
+        android:id="@+id/txtTurmasNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="45dp"
@@ -21,54 +21,53 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtAlunosRa"
+        android:id="@+id/txtTurmasUniversidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="70dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="25dp"
-        android:text="RA"
+        android:text="Universidade"
         android:textSize="20sp"
-        app:layout_constraintLeft_toRightOf="@+id/txtAlunosNome"
+        app:layout_constraintLeft_toRightOf="@+id/txtTurmasNome"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtAlunosTurma"
+        android:id="@+id/txtTurmasCampus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="25dp"
-        android:text="Turma"
+        android:text="Qtd Alunos"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtAlunosRa"
+        app:layout_constraintStart_toEndOf="@+id/txtTurmasUniversidade"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/nameList"
+        android:id="@+id/turmasNomeList"
         android:layout_width="120dp"
         android:layout_height="430dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAlunosNome" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTurmasNome" />
 
     <ListView
-        android:id="@+id/raList"
-        android:layout_width="110dp"
+        android:id="@+id/universidadeList"
+        android:layout_width="130dp"
         android:layout_height="430dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintLeft_toRightOf="@+id/nameList"
-        app:layout_constraintTop_toBottomOf="@+id/txtAlunosRa" />
+        app:layout_constraintLeft_toRightOf="@+id/turmasNomeList"
+        app:layout_constraintTop_toBottomOf="@+id/txtTurmasUniversidade" />
 
     <ListView
-        android:id="@+id/turmaList"
+        android:id="@+id/campusList"
         android:layout_width="110dp"
         android:layout_height="430dp"
-        android:layout_marginLeft="00dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintLeft_toRightOf="@+id/raList"
-        app:layout_constraintTop_toBottomOf="@+id/txtAlunosTurma" />
+        app:layout_constraintLeft_toRightOf="@+id/universidadeList"
+        app:layout_constraintTop_toBottomOf="@+id/txtTurmasCampus" />
 
 </android.support.constraint.ConstraintLayout>
