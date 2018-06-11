@@ -9,6 +9,7 @@ public class Create extends SQLiteOpenHelper {
     private static final String DB_NAME = "DB_GABARITANDO";
     private static final int DB_VERSION = 1;
     private static final String TB_DOCENTE = "TB_DOCENTE";
+    private static final String TB_TURMAS = "TB_TURMAS";
 
     private static final String DB_PATH = "/data/user/0/br.edu.anhembi.gabaritando/database/DB_GABARITANDO";
     private Context mContext;
@@ -37,14 +38,20 @@ public class Create extends SQLiteOpenHelper {
 
         openDB();
 
-        String createTable = "CREATE TABLE IF NOT EXISTS " + TB_DOCENTE + " ("
+        String createTableDocente = "CREATE TABLE IF NOT EXISTS " + TB_DOCENTE + " ("
                 + "ID_USER INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
                 + "NOME TEXT, "
                 + "EMAIL TEXT, "
                 + "SENHA TEXT,"
                 + "unique (EMAIL)) ";
+        String createTableTurmas = "CREATE TABLE IF NOT EXISTS " + TB_TURMAS + " ("
+                + "ID_TURMA INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+                + "NOME_TURMA TEXT, "
+                + "UNIVERSIDADE_TURMA TEXT, "
+                + "CAMPUS_TURMA TEXT)";
         try {
-            db.execSQL(createTable);
+            db.execSQL(createTableDocente);
+            db.execSQL(createTableTurmas);
             return true;
         } catch (Exception e) {
             System.out.println("Erro ao criar a database");

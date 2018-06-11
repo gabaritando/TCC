@@ -42,7 +42,6 @@ public class Read extends SQLiteOpenHelper {
     public boolean validaSenha(String email, String senha) {
         openDB();
         String validaSenha = "SELECT * FROM " + TB_DOCENTE + " WHERE email = '" + email + "' AND senha = '" + senha + "'";
-        System.out.println(validaSenha);
 
         try{
             Cursor c = db.rawQuery(validaSenha, null);
@@ -63,7 +62,7 @@ public class Read extends SQLiteOpenHelper {
     public boolean checaEmail(String email) {
         openDB();
         String checaEmail = "SELECT EMAIL FROM " + TB_DOCENTE + " WHERE EMAIL = '" + email + "'";
-        System.out.println(checaEmail);
+
           try{
             Cursor c = db.rawQuery(checaEmail, null);
             System.out.println("Query de validação executada");
@@ -86,7 +85,7 @@ public class Read extends SQLiteOpenHelper {
         openDB();
         String selectNome = "SELECT NOME FROM " + TB_DOCENTE + " WHERE EMAIL = '" + email + "'";
         String nome;
-        System.out.println(selectNome);
+
         try{
             Cursor c = db.rawQuery(selectNome, null);
 

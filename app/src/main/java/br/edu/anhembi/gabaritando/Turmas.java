@@ -1,5 +1,6 @@
 package br.edu.anhembi.gabaritando;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,12 +12,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class Turmas extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class Turmas extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
-    private ListView nameList, universidadeList, campusList;
+    private ListView turmasNomeList, universidadeList, campusList;
 
-    private int id, ra;
-    private String turma;
+    private int id;
+    private String turmaNome, turmaUniversidade, turmaCampus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,37 +27,31 @@ public class Turmas extends AppCompatActivity implements AdapterView.OnItemClick
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Em manutencao", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fab.setOnClickListener(this);
 
-        nameList = (ListView) findViewById(R.id.nameList);
-        universidadeList = (ListView) findViewById(R.id.raList);
-        campusList = (ListView) findViewById(R.id.turmaList);
+        turmasNomeList = (ListView) findViewById(R.id.turmasNomeList);
+        universidadeList = (ListView) findViewById(R.id.universidadeList);
+        campusList = (ListView) findViewById(R.id.campusList);
 
         ArrayAdapter<CharSequence> nameAdapter = ArrayAdapter.createFromResource
-                (this, R.array.nameList, android.R.layout.simple_list_item_1);
-        ArrayAdapter<CharSequence> raAdapter = ArrayAdapter.createFromResource
-                (this, R.array.raList, android.R.layout.simple_list_item_1);
-        ArrayAdapter<CharSequence> turmaAdapter = ArrayAdapter.createFromResource
-                (this, R.array.turmaList, android.R.layout.simple_list_item_1);
+                (this, R.array.turmasNomeList, android.R.layout.simple_list_item_1);
+        ArrayAdapter<CharSequence> universidadeAdapter = ArrayAdapter.createFromResource
+                (this, R.array.universidadeList, android.R.layout.simple_list_item_1);
+        ArrayAdapter<CharSequence> campusAdapter = ArrayAdapter.createFromResource
+                (this, R.array.campusList, android.R.layout.simple_list_item_1);
 
-        nameList.setAdapter(nameAdapter);
-        universidadeList.setAdapter(raAdapter);
-        campusList.setAdapter(turmaAdapter);
+        turmasNomeList.setAdapter(nameAdapter);
+        universidadeList.setAdapter(universidadeAdapter);
+        campusList.setAdapter(campusAdapter);
 
-        nameList.setOnItemClickListener(this);
+        turmasNomeList.setOnItemClickListener(this);
         universidadeList.setOnItemClickListener(this);
         campusList.setOnItemClickListener(this);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-        String item = (String) nameList.getAdapter().getItem(position);
+        String item = (String) turmasNomeList.getAdapter().getItem(position);
         Toast.makeText(this, "Nome selecionado: " + item, Toast.LENGTH_SHORT).show();
 
         String item2 = (String) universidadeList.getAdapter().getItem(position);
@@ -66,4 +61,41 @@ public class Turmas extends AppCompatActivity implements AdapterView.OnItemClick
         Toast.makeText(this, "Campus selecionado: " + item3, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onClick(View view) {
+        Intent registrarTurma = new Intent(this, RegistrarTurma.class);
+        startActivity(registrarTurma);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTurmaNome() {
+        return turmaNome;
+    }
+
+    public void setTurmaNome(String turmaNome) {
+        this.turmaNome = turmaNome;
+    }
+
+    public String getTurmaUniversidade() {
+        return turmaUniversidade;
+    }
+
+    public void setTurmaUniversidade(String turmaUniversidade) {
+        this.turmaUniversidade = turmaUniversidade;
+    }
+
+    public String getTurmaCampus() {
+        return turmaCampus;
+    }
+
+    public void setTurmaCampus(String turmaCampus) {
+        this.turmaCampus = turmaCampus;
+    }
 }

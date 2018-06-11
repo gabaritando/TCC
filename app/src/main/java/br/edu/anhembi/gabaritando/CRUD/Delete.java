@@ -10,7 +10,7 @@ public class Delete extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "DB_GABARITANDO";
     private static final int DB_VERSION = 1;
-    private static final String TB_DOCENTE = "TB_DOCENTE";
+    //private static final String TB_DOCENTE = "TB_DOCENTE";
 
     private static final String DB_PATH = "/data/user/0/br.edu.anhembi.gabaritando/database/DB_GABARITANDO";
     private Context mContext;
@@ -35,7 +35,7 @@ public class Delete extends SQLiteOpenHelper {
 
     }
 
-    public boolean deleteTable(){
+    /*public boolean deleteTable(){
         openDB();
         String deleteTable = "DROP TABLE IF EXISTS " + DB_NAME;
         try {
@@ -47,9 +47,9 @@ public class Delete extends SQLiteOpenHelper {
         } finally {
             db.close();
         }
-    }
+    }*/
 
-    public boolean deleteDocente(Docente d){
+    /*public boolean deleteDocente(Docente d){
         openDB();
 
         String deleteDocente = "EMAIL = '" + d.getEmail() + "'";
@@ -63,7 +63,7 @@ public class Delete extends SQLiteOpenHelper {
         } finally {
             db.close();
         }
-    }
+    }*/
 
     private void openDB() {
      if(!db.isOpen()){

@@ -44,6 +44,26 @@
         <item>CCONOVO</item>
         <item>MODANOPAU</item>
     </string-array>
+
     <string name="title_activity_turmas">Turmas</string>
+
+    <string-array name="turmasNomeList">
+        <item>Direito</item>
+        <item>Marketing</item>
+        <item>Produtos</item>
+    </string-array>
+
+    <string-array name="universidadeList">
+        <item>Anhembi</item>
+        <item>Mackenzie</item>
+        <item>USP</item>
+    </string-array>
+
+    <string-array name="campusList">
+        <item>Vila Olimpia</item>
+        <item>Mooca</item>
+        <item>Paulista</item>
+    </string-array>
+
 
 </resources>
