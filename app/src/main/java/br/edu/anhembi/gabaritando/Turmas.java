@@ -1,5 +1,6 @@
 package br.edu.anhembi.gabaritando;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class Turmas extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class Turmas extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     private ListView turmasNomeList, universidadeList, campusList;
 
@@ -26,13 +27,7 @@ public class Turmas extends AppCompatActivity implements AdapterView.OnItemClick
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Em manutencao", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fab.setOnClickListener(this);
 
         turmasNomeList = (ListView) findViewById(R.id.turmasNomeList);
         universidadeList = (ListView) findViewById(R.id.universidadeList);
@@ -64,6 +59,12 @@ public class Turmas extends AppCompatActivity implements AdapterView.OnItemClick
 
         String item3 = (String) campusList.getAdapter().getItem(position);
         Toast.makeText(this, "Campus selecionado: " + item3, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent registrarTurma = new Intent(this, RegistrarTurma.class);
+        startActivity(registrarTurma);
     }
 
     public int getId() {
