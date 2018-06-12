@@ -10,7 +10,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import br.edu.anhembi.gabaritando.CRUD.Read;
+import br.edu.anhembi.gabaritando.CRUD.Update;
 
 public class Turmas extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
@@ -32,13 +38,21 @@ public class Turmas extends AppCompatActivity implements AdapterView.OnItemClick
         turmasNomeList = (ListView) findViewById(R.id.turmasNomeList);
         universidadeList = (ListView) findViewById(R.id.universidadeList);
         campusList = (ListView) findViewById(R.id.campusList);
+        ArrayList<CharSequence> turmas = new ArrayList();
+        ArrayList<CharSequence> universidades = new ArrayList();
+        ArrayList<CharSequence> campus = new ArrayList();
 
-        ArrayAdapter<CharSequence> nameAdapter = ArrayAdapter.createFromResource
-                (this, R.array.turmasNomeList, android.R.layout.simple_list_item_1);
-        ArrayAdapter<CharSequence> universidadeAdapter = ArrayAdapter.createFromResource
-                (this, R.array.universidadeList, android.R.layout.simple_list_item_1);
-        ArrayAdapter<CharSequence> campusAdapter = ArrayAdapter.createFromResource
-                (this, R.array.campusList, android.R.layout.simple_list_item_1);
+
+
+        ArrayAdapter<CharSequence> nameAdapter = new ArrayAdapter<CharSequence>
+                (this, android.R.layout.simple_list_item_1, turmas );
+
+        ArrayAdapter<CharSequence> universidadeAdapter = new ArrayAdapter<CharSequence>
+                (this, android.R.layout.simple_list_item_1, universidades );
+
+        ArrayAdapter<CharSequence> campusAdapter = new ArrayAdapter<CharSequence>
+                (this, android.R.layout.simple_list_item_1, campus );
+
 
         turmasNomeList.setAdapter(nameAdapter);
         universidadeList.setAdapter(universidadeAdapter);
@@ -47,6 +61,13 @@ public class Turmas extends AppCompatActivity implements AdapterView.OnItemClick
         turmasNomeList.setOnItemClickListener(this);
         universidadeList.setOnItemClickListener(this);
         campusList.setOnItemClickListener(this);
+
+        Read r = new Read(getApplicationContext());
+        r.selectNomeTurmas(turmas, universidades, campus);
+
+
+
+
     }
 
     @Override

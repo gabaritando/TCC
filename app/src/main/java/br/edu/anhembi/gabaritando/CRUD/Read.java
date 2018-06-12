@@ -15,6 +15,7 @@ public class Read extends SQLiteOpenHelper {
     private static final String DB_NAME = "DB_GABARITANDO";
     private static final int DB_VERSION = 1;
     private static final String TB_DOCENTE = "TB_DOCENTE";
+    private static final String TB_TURMAS = "TB_TURMAS";
 
     private static final String DB_PATH = "/data/user/0/br.edu.anhembi.gabaritando/database/DB_GABARITANDO";
     private Context mContext;
@@ -104,6 +105,37 @@ public class Read extends SQLiteOpenHelper {
             db.close();
         }
     }
+
+    //funcao para ler turmas
+    public void selectNomeTurmas(ArrayList turma, ArrayList universidade, ArrayList campus) {
+        openDB();
+        String selectNomeTurmas =  "SELECT NOME_TURMA, UNIVERSIDADE_TURMA, CAMPUS_TURMA FROM " + TB_TURMAS;
+        try {
+
+            Cursor c = db.rawQuery(selectNomeTurmas, null);
+
+            if (c != null ) {
+                if  (c.moveToFirst()) {
+                    do {
+                        String nome = c.getString(c.getColumnIndex("NOME_TURMA"));
+                        String uni  = c.getString(c.getColumnIndex("UNIVERSIDADE_TURMA"));
+                        String camp = c.getString(c.getColumnIndex("CAMPUS_TURMA"));
+                        turma.add(nome);
+                        universidade.add(uni);
+                        campus.add(camp);
+                    }while (c.moveToNext());
+                }
+            }
+        } catch (Exception e ) {
+            e.printStackTrace();
+            System.out.println("Erro ao executar a query");
+        } finally {
+            db.close();
+        }
+
+    }
+
+
 
 
 //  Método para retornar um arraylist dos usuários cadastrados no banco

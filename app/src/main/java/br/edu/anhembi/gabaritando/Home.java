@@ -86,7 +86,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         btnTurmas.setOnClickListener(this);
         btnAlunos.setOnClickListener(this);
 
-        navNomeHome.setText(exibirNome);
+        navNomeHome.setText(nomeHome.getText().toString());
 
 
 
