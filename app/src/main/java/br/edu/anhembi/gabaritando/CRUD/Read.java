@@ -138,7 +138,7 @@ public class Read extends SQLiteOpenHelper {
 
     public void selectNomeAlunos(ArrayList aluno, ArrayList raAluno, ArrayList turmaAluno) {
         openDB();
-        String selectNomeAlunos =  "SELECT NOME_ALUNO, RA_ALUNO, TURMA_ALUNO FROM " + TB_ALUNOS;
+        String selectNomeAlunos =  "SELECT RA_ALUNO, NOME_ALUNO, TURMA_ALUNO FROM " + TB_ALUNOS;
         try {
 
             Cursor c = db.rawQuery(selectNomeAlunos, null);
@@ -146,11 +146,11 @@ public class Read extends SQLiteOpenHelper {
             if (c != null ) {
                 if  (c.moveToFirst()) {
                     do {
-                        String nome = c.getString(c.getColumnIndex("NOME_ALUNO"));
                         String ra  = c.getString(c.getColumnIndex("RA_ALUNO"));
+                        String nome = c.getString(c.getColumnIndex("NOME_ALUNO"));
                         String turma = c.getString(c.getColumnIndex("TURMA_ALUNO"));
-                        aluno.add(nome);
                         raAluno.add(ra);
+                        aluno.add(nome);
                         turmaAluno.add(turma);
                     }while (c.moveToNext());
                 }

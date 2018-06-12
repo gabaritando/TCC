@@ -23,7 +23,7 @@ public class Alunos extends AppCompatActivity implements AdapterView.OnItemClick
     private ListView alunosNomeList, alunosRaList, alunosTurmaList;
 
     private int id, ra;
-    private String turma;
+    private String nome, turma;
 
 
 
@@ -83,4 +83,8 @@ public class Alunos extends AppCompatActivity implements AdapterView.OnItemClick
     public String getTurma() { return turma; }
 
     public void setTurma(String turma) { this.turma = turma; }
+
+    public String getNome() { return nome; }
+
+    public void setNome(String nome) { this.nome = nome; }
 }
