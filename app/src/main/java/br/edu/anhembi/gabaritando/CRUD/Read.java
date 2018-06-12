@@ -16,6 +16,7 @@ public class Read extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
     private static final String TB_DOCENTE = "TB_DOCENTE";
     private static final String TB_TURMAS = "TB_TURMAS";
+    private static final String TB_ALUNOS = "TB_ALUNOS";
 
     private static final String DB_PATH = "/data/user/0/br.edu.anhembi.gabaritando/database/DB_GABARITANDO";
     private Context mContext;
@@ -134,6 +135,35 @@ public class Read extends SQLiteOpenHelper {
         }
 
     }
+
+    public void selectNomeAlunos(ArrayList aluno, ArrayList raAluno, ArrayList turmaAluno) {
+        openDB();
+        String selectNomeAlunos =  "SELECT NOME_ALUNO, RA_ALUNO, TURMA_ALUNO FROM " + TB_ALUNOS;
+        try {
+
+            Cursor c = db.rawQuery(selectNomeAlunos, null);
+
+            if (c != null ) {
+                if  (c.moveToFirst()) {
+                    do {
+                        String nome = c.getString(c.getColumnIndex("NOME_ALUNO"));
+                        String ra  = c.getString(c.getColumnIndex("RA_ALUNO"));
+                        String turma = c.getString(c.getColumnIndex("TURMA_ALUNO"));
+                        aluno.add(nome);
+                        raAluno.add(ra);
+                        turmaAluno.add(turma);
+                    }while (c.moveToNext());
+                }
+            }
+        } catch (Exception e ) {
+            e.printStackTrace();
+            System.out.println("Erro ao executar a query");
+        } finally {
+            db.close();
+        }
+
+    }
+
 
 
 

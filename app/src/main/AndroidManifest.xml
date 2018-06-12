@@ -33,7 +33,8 @@
             android:name=".Turmas"
             android:label="@string/title_activity_turmas"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".RegistrarTurma"></activity>
+        <activity android:name=".RegistrarTurma" />
+        <activity android:name=".RegistrarAluno"></activity>
     </application>
 
 </manifest>
