@@ -149,15 +149,15 @@ public class Read extends SQLiteOpenHelper {
                         String ra  = c.getString(c.getColumnIndex("RA_ALUNO"));
                         String nome = c.getString(c.getColumnIndex("NOME_ALUNO"));
                         String turma = c.getString(c.getColumnIndex("TURMA_ALUNO"));
-                        raAluno.add(ra);
                         aluno.add(nome);
+                        raAluno.add(ra);
                         turmaAluno.add(turma);
                     }while (c.moveToNext());
                 }
             }
         } catch (Exception e ) {
             e.printStackTrace();
-            System.out.println("Erro ao executar a query");
+            System.out.println("Erro ao executar a query ALUNOS");
         } finally {
             db.close();
         }

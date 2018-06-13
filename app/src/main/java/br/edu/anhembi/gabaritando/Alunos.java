@@ -45,12 +45,31 @@ public class Alunos extends AppCompatActivity implements AdapterView.OnItemClick
         ArrayList<CharSequence> raArray = new ArrayList();
         ArrayList<CharSequence> turmasArray = new ArrayList();
 
+        ArrayAdapter<CharSequence> alunosAdapter = new ArrayAdapter<CharSequence>
+                (this, android.R.layout.simple_list_item_1, alunosArray );
+
+        ArrayAdapter<CharSequence> raArrayAdapter = new ArrayAdapter<CharSequence>
+                (this, android.R.layout.simple_list_item_1, raArray );
+
+        ArrayAdapter<CharSequence> turmasAdapter = new ArrayAdapter<CharSequence>
+                (this, android.R.layout.simple_list_item_1, turmasArray );
+
+
+
+
+
+        alunosNomeList.setAdapter(alunosAdapter);
+        alunosRaList.setAdapter(raArrayAdapter);
+        alunosTurmaList.setAdapter(turmasAdapter);
+
         alunosNomeList.setOnItemClickListener(this);
         alunosRaList.setOnItemClickListener(this);
         alunosTurmaList.setOnItemClickListener(this);
 
+
+
         Read r = new Read(getApplicationContext());
-        r.selectNomeTurmas(alunosArray, raArray, turmasArray);
+        r.selectNomeAlunos(alunosArray, raArray, turmasArray);
     }
 
     @Override

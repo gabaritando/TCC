@@ -52,7 +52,7 @@ public class Create extends SQLiteOpenHelper {
                 + "CAMPUS_TURMA TEXT)";
         String createTableAlunos = "CREATE TABLE IF NOT EXISTS " + TB_ALUNOS + " ("
                 + "ID_ALUNO INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
-                + "RA_ALUNO INTEGER PRIMARY KEY, "
+                + "RA_ALUNO INTEGER, "
                 + "NOME_ALUNO TEXT, "
                 + "TURMA_ALUNO TEXT)";
         try {
