@@ -22,8 +22,8 @@ public class Alunos extends AppCompatActivity implements AdapterView.OnItemClick
 
     private ListView alunosNomeList, alunosRaList, alunosTurmaList;
 
-    private int id, ra;
-    private String nome, turma;
+    private int id, ra, turma;
+    private String nome;
 
 
 
@@ -53,9 +53,6 @@ public class Alunos extends AppCompatActivity implements AdapterView.OnItemClick
 
         ArrayAdapter<CharSequence> turmasAdapter = new ArrayAdapter<CharSequence>
                 (this, android.R.layout.simple_list_item_1, turmasArray );
-
-
-
 
 
         alunosNomeList.setAdapter(alunosAdapter);
@@ -99,9 +96,9 @@ public class Alunos extends AppCompatActivity implements AdapterView.OnItemClick
 
     public void setRa(int ra) { this.ra = ra; }
 
-    public String getTurma() { return turma; }
+    public int getTurma() { return turma; }
 
-    public void setTurma(String turma) { this.turma = turma; }
+    public void setTurma(int turma) { this.turma = turma; }
 
     public String getNome() { return nome; }
 

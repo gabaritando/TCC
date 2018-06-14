@@ -112,11 +112,13 @@ public class Turmas extends AppCompatActivity implements AdapterView.OnItemClick
         this.turmaUniversidade = turmaUniversidade;
     }
 
-    public String getTurmaCampus() {
-        return turmaCampus;
-    }
+    public String getTurmaCampus() { return turmaCampus; }
 
     public void setTurmaCampus(String turmaCampus) {
         this.turmaCampus = turmaCampus;
+    }
+
+    public String toString() {
+        return turmaNome;
     }
 }

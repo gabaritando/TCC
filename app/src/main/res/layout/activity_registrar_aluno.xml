@@ -52,7 +52,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNomeAluno" />
 
-    <EditText
+    <!--<EditText
         android:id="@+id/editTextAlunoTurma"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -64,6 +64,15 @@
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRA" />-->
+
+    <Spinner
+        android:id="@+id/spinnerAlunoTurma"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextRA" />
@@ -82,7 +91,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAlunoTurma"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAlunoTurma"
         tools:textAllCaps="false" />
 
 </android.support.constraint.ConstraintLayout>

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import br.edu.anhembi.gabaritando.Docente;
+import br.edu.anhembi.gabaritando.Turmas;
 
 public class Read extends SQLiteOpenHelper {
 
@@ -91,7 +92,6 @@ public class Read extends SQLiteOpenHelper {
         try{
             Cursor c = db.rawQuery(selectNome, null);
 
-            System.out.println("Query de validação executada");
             if (c.moveToFirst()) {
                 nome = c.getString(0);
                 return nome;
@@ -131,6 +131,9 @@ public class Read extends SQLiteOpenHelper {
             e.printStackTrace();
             System.out.println("Erro ao executar a query");
         } finally {
+            System.out.println(turma);
+            System.out.println(universidade);
+            System.out.println(campus);
             db.close();
         }
 
@@ -138,7 +141,11 @@ public class Read extends SQLiteOpenHelper {
 
     public void selectNomeAlunos(ArrayList aluno, ArrayList raAluno, ArrayList turmaAluno) {
         openDB();
-        String selectNomeAlunos =  "SELECT RA_ALUNO, NOME_ALUNO, TURMA_ALUNO FROM " + TB_ALUNOS;
+
+        String selectNomeAlunos =  "SELECT * FROM " + TB_ALUNOS
+                +" a INNER JOIN " + TB_TURMAS
+                +" t ON (a.TURMA_ALUNO = t.ID_TURMA)";
+
         try {
 
             Cursor c = db.rawQuery(selectNomeAlunos, null);
@@ -146,22 +153,57 @@ public class Read extends SQLiteOpenHelper {
             if (c != null ) {
                 if  (c.moveToFirst()) {
                     do {
-                        String ra  = c.getString(c.getColumnIndex("RA_ALUNO"));
-                        String nome = c.getString(c.getColumnIndex("NOME_ALUNO"));
-                        String turma = c.getString(c.getColumnIndex("TURMA_ALUNO"));
+                        String ra = c.getString(3);
+                        String nome = c.getString(2);
+                        String turma = c.getString(6);
+
                         aluno.add(nome);
                         raAluno.add(ra);
                         turmaAluno.add(turma);
+
                     }while (c.moveToNext());
                 }
             }
+
+
         } catch (Exception e ) {
             e.printStackTrace();
             System.out.println("Erro ao executar a query ALUNOS");
         } finally {
+            System.out.println(aluno);
+            System.out.println(raAluno);
+            System.out.println(turmaAluno);
             db.close();
         }
 
+    }
+
+
+    public ArrayList<Turmas> getTurmas() {
+        openDB();
+        ArrayList<Turmas> tArray = new ArrayList<>();
+        String getTurmas = "SELECT ID_TURMA, NOME_TURMA FROM " + TB_TURMAS;
+
+        try{
+           Cursor c = db.rawQuery(getTurmas, null);
+
+           if (c.moveToFirst()){
+                do {
+                    Turmas t = new Turmas();
+                    t.setId(c.getInt(0));
+                    t.setTurmaNome(c.getString(1));
+                    tArray.add(t);
+                } while(c.moveToNext());
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        } finally {
+            db.close();
+        }
+
+        return tArray;
     }
 
 

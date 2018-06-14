@@ -4,16 +4,25 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import br.edu.anhembi.gabaritando.CRUD.Read;
 import br.edu.anhembi.gabaritando.CRUD.Update;
 
-public class RegistrarAluno extends AppCompatActivity implements View.OnClickListener {
+public class RegistrarAluno extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    EditText editTextNomeAluno, editTextRA, editTextAlunoTurma;
+    EditText editTextNomeAluno, editTextRA;
     Button btnRegisterAluno;
+    ArrayList alunoTurmas;
+    Spinner spTurmas;
+    Alunos aluno = new Alunos();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,24 +31,41 @@ public class RegistrarAluno extends AppCompatActivity implements View.OnClickLis
 
         editTextNomeAluno = (EditText) findViewById(R.id.editTextNomeAluno);
         editTextRA = (EditText) findViewById(R.id.editTextRA);
-        editTextAlunoTurma = (EditText) findViewById(R.id.editTextAlunoTurma);
         btnRegisterAluno = (Button) findViewById(R.id.btnRegisterAluno);
+
+        Read r = new Read(getApplicationContext());
+
+
+        alunoTurmas = r.getTurmas();
+
+        ArrayAdapter<Turmas> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, alunoTurmas);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spTurmas = (Spinner) findViewById(R.id.spinnerAlunoTurma);
+        System.out.println(adapter);
+
+        spTurmas.setAdapter(adapter);
+        spTurmas.setOnItemSelectedListener(this);
+        System.out.println(spTurmas);
+
+        loadSpinnerData();
 
 
         btnRegisterAluno.setOnClickListener(this);
     }
 
+    private void loadSpinnerData() {
+    }
+
     @Override
     public void onClick(View view) {
-        Alunos a = new Alunos();
 
-        a.setNome(editTextNomeAluno.getText().toString());
-        a.setRa(Integer.parseInt(editTextRA.getText().toString()));
-        a.setTurma(editTextAlunoTurma.getText().toString());
+        aluno.setNome(editTextNomeAluno.getText().toString());
+        aluno.setRa(Integer.parseInt(editTextRA.getText().toString()));
 
         Update u = new Update(getApplicationContext());
 
-        if (u.insertAluno(a)) {
+        if (u.insertAluno(aluno)) {
             Toast.makeText(this, "Aluno cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
 
             Intent telaAlunos = new Intent(this, Alunos.class);
@@ -47,5 +73,16 @@ public class RegistrarAluno extends AppCompatActivity implements View.OnClickLis
         } else {
             Toast.makeText(this, "Erro ao cadastrar aluno!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        aluno.setTurma((int) spTurmas.getSelectedItemId());
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

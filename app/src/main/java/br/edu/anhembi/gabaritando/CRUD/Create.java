@@ -54,7 +54,8 @@ public class Create extends SQLiteOpenHelper {
                 + "ID_ALUNO INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
                 + "RA_ALUNO INTEGER, "
                 + "NOME_ALUNO TEXT, "
-                + "TURMA_ALUNO TEXT)";
+                + "TURMA_ALUNO INTEGER, "
+                + "FOREIGN KEY (TURMA_ALUNO) references "+ TB_TURMAS + " (ID_TURMA))";
         try {
             db.execSQL(createTableDocente);
             db.execSQL(createTableTurmas);
