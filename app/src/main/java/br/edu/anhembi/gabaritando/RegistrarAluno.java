@@ -42,11 +42,11 @@ public class RegistrarAluno extends AppCompatActivity implements View.OnClickLis
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spTurmas = (Spinner) findViewById(R.id.spinnerAlunoTurma);
-        System.out.println(adapter);
+
 
         spTurmas.setAdapter(adapter);
         spTurmas.setOnItemSelectedListener(this);
-        System.out.println(spTurmas);
+
 
         loadSpinnerData();
 
@@ -77,7 +77,7 @@ public class RegistrarAluno extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        aluno.setTurma((int) spTurmas.getSelectedItemId());
+        aluno.setTurma((int) spTurmas.getSelectedItemId() + 1);
 
     }
 

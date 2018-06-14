@@ -142,9 +142,9 @@ public class Read extends SQLiteOpenHelper {
     public void selectNomeAlunos(ArrayList aluno, ArrayList raAluno, ArrayList turmaAluno) {
         openDB();
 
-        String selectNomeAlunos =  "SELECT * FROM " + TB_ALUNOS
+        String selectNomeAlunos =  "SELECT a.RA_ALUNO, a.NOME_ALUNO, t.NOME_TURMA FROM " + TB_ALUNOS
                 +" a INNER JOIN " + TB_TURMAS
-                +" t ON (a.TURMA_ALUNO = t.ID_TURMA)";
+                +" t ON a.TURMA_ALUNO = t.ID_TURMA";
 
         try {
 
@@ -153,9 +153,9 @@ public class Read extends SQLiteOpenHelper {
             if (c != null ) {
                 if  (c.moveToFirst()) {
                     do {
-                        String ra = c.getString(3);
-                        String nome = c.getString(2);
-                        String turma = c.getString(6);
+                        String ra = c.getString(0);
+                        String nome = c.getString(1);
+                        String turma = c.getString(2);
 
                         aluno.add(nome);
                         raAluno.add(ra);
