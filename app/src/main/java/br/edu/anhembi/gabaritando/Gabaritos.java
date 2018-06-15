@@ -1,14 +1,14 @@
 package br.edu.anhembi.gabaritando;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.media.Image;
+import android.media.MediaActionSound;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.Button;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -19,13 +19,15 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 
+import java.util.Date;
 
-public class Gabaritos extends AppCompatActivity implements CvCameraViewListener2  {
 
-    private static final String TAG = "MYAPP::OPENCV";
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+public class Gabaritos extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2  {
 
-    private CameraBridgeViewBase mOpenCvCameraView;
+    private static final String TAG = "OCVSample:Activity";
+
+    CameraPreview mOpenCvCameraView;
+    Button btnOk;
 
 
     BaseLoaderCallback mCallBack = new BaseLoaderCallback(this) {
@@ -52,9 +54,27 @@ public class Gabaritos extends AppCompatActivity implements CvCameraViewListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gabaritos);
 
-        mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.HelloOpenCvView);
+        mOpenCvCameraView = (CameraPreview) findViewById(R.id.HelloOpenCvView);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
+
+        btnOk = (Button) findViewById(R.id.btnOk);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MediaActionSound sound = new MediaActionSound();
+                sound.play(MediaActionSound.SHUTTER_CLICK);
+                Log.i(TAG, "on button click");
+                Date sdf = new Date();
+                String currentDateandTime = sdf.toString();
+                String fileName = Environment.getExternalStorageDirectory().getPath() +
+                        "/sample_picture_" + currentDateandTime + ".jpeg";
+
+                mOpenCvCameraView.takePicture(fileName);
+            }
+        });
+
+
     }
 
     @Override
@@ -119,24 +139,5 @@ public class Gabaritos extends AppCompatActivity implements CvCameraViewListener
         return canny;
 
     }
-
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-
-            ImageView mImageCaptured = findViewById(R.id.mImageCaptured);
-
-            mImageCaptured.setImageBitmap(imageBitmap);
-        }
-    }
-
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }*/
 
 }
