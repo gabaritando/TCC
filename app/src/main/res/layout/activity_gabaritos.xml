@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:opencv="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.edu.anhembi.gabaritando.Gabaritos">
+    tools:context=".Gabaritos">
+
+    <br.edu.anhembi.gabaritando.CameraPreview
+        android:id="@+id/cameraPrev"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/btnOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_weight="1"
+        android:text="Capture"
+        opencv:layout_constraintBottom_toBottomOf="@+id/cameraPrev"
+        opencv:layout_constraintEnd_toStartOf="@+id/cameraPrev"
+        opencv:layout_constraintHorizontal_bias="0.5"
+        opencv:layout_constraintStart_toEndOf="@+id/cameraPrev" />
 
 </android.support.constraint.ConstraintLayout>

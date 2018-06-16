@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistrarAluno">
+
+    <TextView
+        android:id="@+id/txtViewRegAluno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
+        android:text="Registrar Aluno"
+        android:textColor="?android:attr/colorMultiSelectHighlight"
+        android:textColorLink="?android:attr/colorMultiSelectHighlight"
+        android:textSize="30sp"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextNomeAluno"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:ems="10"
+        android:hint="Nome do aluno"
+        android:inputType="textPersonName"
+        android:maxLength="50"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewRegAluno" />
+
+    <EditText
+        android:id="@+id/editTextRA"
+        android:layout_width="200dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Registro do Aluno"
+        android:inputType="textPersonName"
+        android:maxLength="50"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNomeAluno" />
+
+    <!--<EditText
+        android:id="@+id/editTextAlunoTurma"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Turma"
+        android:inputType="textPersonName"
+        android:maxLength="50"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRA" />-->
+
+    <Spinner
+        android:id="@+id/spinnerAlunoTurma"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRA" />
+
+    <Button
+        android:id="@+id/btnRegisterAluno"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/holo_orange_dark"
+        android:text="Registrar"
+        android:textColor="@android:color/white"
+        android:textColorLink="@android:color/holo_orange_dark"
+        android:textSize="25sp"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAlunoTurma"
+        tools:textAllCaps="false" />
+
+</android.support.constraint.ConstraintLayout>
