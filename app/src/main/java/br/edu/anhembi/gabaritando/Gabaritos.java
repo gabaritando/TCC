@@ -2,17 +2,14 @@ package br.edu.anhembi.gabaritando;
 
 import android.media.MediaActionSound;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
-
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
@@ -54,7 +51,7 @@ public class Gabaritos extends AppCompatActivity implements CameraBridgeViewBase
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gabaritos);
 
-        mOpenCvCameraView = (CameraPreview) findViewById(R.id.HelloOpenCvView);
+        mOpenCvCameraView = (CameraPreview) findViewById(R.id.cameraPrev);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
 
@@ -136,7 +133,9 @@ public class Gabaritos extends AppCompatActivity implements CameraBridgeViewBase
 
         Imgproc.Canny(gray, canny, 100,80);
 
-        return canny;
+        //return canny to apply filter in frame
+
+        return mRgbaT;
 
     }
 

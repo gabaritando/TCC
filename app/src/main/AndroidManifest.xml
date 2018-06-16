@@ -51,7 +51,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".RegistrarTurma" />
         <activity android:name=".RegistrarAluno" />
-        <activity android:name=".CameraPrinted"></activity>
+        <activity android:name=".CameraPrinted" />
+        <activity android:name=".CameraCaptured"></activity>
     </application>
 
 </manifest>

@@ -7,7 +7,7 @@
     tools:context=".Gabaritos">
 
     <br.edu.anhembi.gabaritando.CameraPreview
-        android:id="@+id/HelloOpenCvView"
+        android:id="@+id/cameraPrev"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -18,9 +18,9 @@
         android:layout_marginBottom="40dp"
         android:layout_weight="1"
         android:text="Capture"
-        opencv:layout_constraintBottom_toBottomOf="@+id/HelloOpenCvView"
-        opencv:layout_constraintEnd_toStartOf="@+id/HelloOpenCvView"
+        opencv:layout_constraintBottom_toBottomOf="@+id/cameraPrev"
+        opencv:layout_constraintEnd_toStartOf="@+id/cameraPrev"
         opencv:layout_constraintHorizontal_bias="0.5"
-        opencv:layout_constraintStart_toEndOf="@+id/HelloOpenCvView" />
+        opencv:layout_constraintStart_toEndOf="@+id/cameraPrev" />
 
 </android.support.constraint.ConstraintLayout>
