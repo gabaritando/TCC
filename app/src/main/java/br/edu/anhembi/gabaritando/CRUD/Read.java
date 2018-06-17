@@ -131,9 +131,9 @@ public class Read extends SQLiteOpenHelper {
             e.printStackTrace();
             System.out.println("Erro ao executar a query");
         } finally {
-            System.out.println(turma);
-            System.out.println(universidade);
-            System.out.println(campus);
+//            System.out.println(turma);
+//            System.out.println(universidade);
+//            System.out.println(campus);
             db.close();
         }
 
@@ -190,7 +190,7 @@ public class Read extends SQLiteOpenHelper {
 
             if (c.moveToFirst()) {
                 turma = c.getInt(0);
-                System.out.println("SUCESSO AO SELECIONAR TURMA");
+                //System.out.println("SUCESSO AO SELECIONAR TURMA");
                 return turma;
 
             } else {

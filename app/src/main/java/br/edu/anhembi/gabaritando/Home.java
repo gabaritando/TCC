@@ -142,8 +142,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         // Handle navigation view item clicks here.
         switch (item.getItemId()){
             case R.id.nav_home:
-                Intent telaHome = new Intent(Home.this, Home.class);
-                startActivity(telaHome);
+//                Intent telaHome = new Intent(Home.this, Home.class);
+//                startActivity(telaHome);
                 break;
             case R.id.nav_turma:
                 Intent telaTurma = new Intent(Home.this, Turmas.class);
@@ -152,6 +152,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             case R.id.nav_gabarito:
                 Intent telaGabarito = new Intent(Home.this, Gabaritos.class);
                 startActivity(telaGabarito);
+                return true;
+            case R.id.nav_aluno:
+                Intent telaAluno = new Intent(Home.this, Alunos.class);
+                startActivity(telaAluno);
                 return true;
             /*case R.id.nav_perfil:
                 Intent telaPerfil = new Intent(Home.this, Perfil.class);

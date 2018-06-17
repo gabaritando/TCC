@@ -107,9 +107,9 @@ public class Update extends SQLiteOpenHelper {
         try{
             db.execSQL(alterarAluno);
 
-            System.out.println( " ANTIGOS " + nomeAntigo + " " + RaAntigo + " " + TurmaAntiga + " ");
-            System.out.println(" NOVOS " + NomeNovo + " " + RaNovo + " " + TurmaNova + " ");
-            System.out.println("!!! Sucesso ao alterar aluno !!!!");
+//            System.out.println( " ANTIGOS " + nomeAntigo + " " + RaAntigo + " " + TurmaAntiga + " ");
+//            System.out.println(" NOVOS " + NomeNovo + " " + RaNovo + " " + TurmaNova + " ");
+//            System.out.println("!!! Sucesso ao alterar aluno !!!!");
             return true;
 
         }catch (Exception e){
