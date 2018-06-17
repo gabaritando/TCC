@@ -94,6 +94,33 @@ public class Update extends SQLiteOpenHelper {
         }
     }
 
+    public boolean alterarAluno(int RaAntigo, String nomeAntigo, int TurmaAntiga ,int RaNovo, String NomeNovo, int TurmaNova){
+        openDB();
+        String alterarAluno =  "UPDATE " + TB_ALUNOS
+                + " SET RA_ALUNO ='" + RaNovo
+                + "', NOME_ALUNO ='" + NomeNovo
+                + "', TURMA_ALUNO ='" + TurmaNova
+                + "' WHERE RA_ALUNO ='" + RaAntigo
+                + "'AND NOME_ALUNO ='" + nomeAntigo
+                + "'AND TURMA_ALUNO ='" + TurmaAntiga
+                + "'";
+        try{
+            db.execSQL(alterarAluno);
+
+            System.out.println( " ANTIGOS " + nomeAntigo + " " + RaAntigo + " " + TurmaAntiga + " ");
+            System.out.println(" NOVOS " + NomeNovo + " " + RaNovo + " " + TurmaNova + " ");
+            System.out.println("!!! Sucesso ao alterar aluno !!!!");
+            return true;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Erro ao executar alteracao");
+            return false;
+        } finally {
+            db.close();
+        }
+    }
+
 
 
 
@@ -140,6 +167,25 @@ public class Update extends SQLiteOpenHelper {
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("Erro ao executar alteracao");
+            return false;
+        } finally {
+            db.close();
+        }
+    }
+    public boolean deletarAluno(int alunoRa, String alunoNome, int alunoTurma){
+        openDB();
+        String deletarAluno =  "DELETE FROM " + TB_ALUNOS
+                + " WHERE RA_ALUNO ='" + alunoRa
+                + "'AND NOME_ALUNO ='" + alunoNome
+                + "'AND TURMA_ALUNO ='" + alunoTurma
+                + "'";
+        try{
+            db.execSQL(deletarAluno);
+            return true;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Erro ao executar alteracao DELETAR ALUNO");
             return false;
         } finally {
             db.close();

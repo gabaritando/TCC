@@ -31,7 +31,6 @@ public class Read extends SQLiteOpenHelper {
     }
 
 
-
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
@@ -46,7 +45,7 @@ public class Read extends SQLiteOpenHelper {
         openDB();
         String validaSenha = "SELECT * FROM " + TB_DOCENTE + " WHERE email = '" + email + "' AND senha = '" + senha + "'";
 
-        try{
+        try {
             Cursor c = db.rawQuery(validaSenha, null);
             System.out.println("Query de validação executada");
             if (c.getCount() == 1) {
@@ -54,7 +53,7 @@ public class Read extends SQLiteOpenHelper {
             } else {
                 return false;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Erro ao executar query de validação");
             return false;
@@ -62,11 +61,12 @@ public class Read extends SQLiteOpenHelper {
             db.close();
         }
     }
+
     public boolean checaEmail(String email) {
         openDB();
         String checaEmail = "SELECT EMAIL FROM " + TB_DOCENTE + " WHERE EMAIL = '" + email + "'";
 
-          try{
+        try {
             Cursor c = db.rawQuery(checaEmail, null);
             System.out.println("Query de validação executada");
             if (c.getCount() == 1) {
@@ -74,7 +74,7 @@ public class Read extends SQLiteOpenHelper {
             } else {
                 return false;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Erro ao executar query de validação");
             return false;
@@ -84,12 +84,12 @@ public class Read extends SQLiteOpenHelper {
     }
 
 
-    public String selectNome (String email) {
+    public String selectNome(String email) {
         openDB();
         String selectNome = "SELECT NOME FROM " + TB_DOCENTE + " WHERE EMAIL = '" + email + "'";
         String nome;
 
-        try{
+        try {
             Cursor c = db.rawQuery(selectNome, null);
 
             if (c.moveToFirst()) {
@@ -98,7 +98,7 @@ public class Read extends SQLiteOpenHelper {
             } else {
                 return "Erro ao carregar Nome";
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Erro ao executar query de validação");
             return "0";
@@ -110,24 +110,24 @@ public class Read extends SQLiteOpenHelper {
     //funcao para ler turmas
     public void selectNomeTurmas(ArrayList turma, ArrayList universidade, ArrayList campus) {
         openDB();
-        String selectNomeTurmas =  "SELECT NOME_TURMA, UNIVERSIDADE_TURMA, CAMPUS_TURMA FROM " + TB_TURMAS;
+        String selectNomeTurmas = "SELECT NOME_TURMA, UNIVERSIDADE_TURMA, CAMPUS_TURMA FROM " + TB_TURMAS;
         try {
 
             Cursor c = db.rawQuery(selectNomeTurmas, null);
 
-            if (c != null ) {
-                if  (c.moveToFirst()) {
+            if (c != null) {
+                if (c.moveToFirst()) {
                     do {
                         String nome = c.getString(c.getColumnIndex("NOME_TURMA"));
-                        String uni  = c.getString(c.getColumnIndex("UNIVERSIDADE_TURMA"));
+                        String uni = c.getString(c.getColumnIndex("UNIVERSIDADE_TURMA"));
                         String camp = c.getString(c.getColumnIndex("CAMPUS_TURMA"));
                         turma.add(nome);
                         universidade.add(uni);
                         campus.add(camp);
-                    }while (c.moveToNext());
+                    } while (c.moveToNext());
                 }
             }
-        } catch (Exception e ) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Erro ao executar a query");
         } finally {
@@ -142,16 +142,16 @@ public class Read extends SQLiteOpenHelper {
     public void selectNomeAlunos(ArrayList aluno, ArrayList raAluno, ArrayList turmaAluno) {
         openDB();
 
-        String selectNomeAlunos =  "SELECT a.RA_ALUNO, a.NOME_ALUNO, t.NOME_TURMA FROM " + TB_ALUNOS
-                +" a INNER JOIN " + TB_TURMAS
-                +" t ON a.TURMA_ALUNO = t.ID_TURMA";
+        String selectNomeAlunos = "SELECT a.RA_ALUNO, a.NOME_ALUNO, t.NOME_TURMA FROM " + TB_ALUNOS
+                + " a INNER JOIN " + TB_TURMAS
+                + " t ON a.TURMA_ALUNO = t.ID_TURMA";
 
         try {
 
             Cursor c = db.rawQuery(selectNomeAlunos, null);
 
-            if (c != null ) {
-                if  (c.moveToFirst()) {
+            if (c != null) {
+                if (c.moveToFirst()) {
                     do {
                         String ra = c.getString(0);
                         String nome = c.getString(1);
@@ -161,22 +161,52 @@ public class Read extends SQLiteOpenHelper {
                         raAluno.add(ra);
                         turmaAluno.add(turma);
 
-                    }while (c.moveToNext());
+                    } while (c.moveToNext());
                 }
             }
 
 
-        } catch (Exception e ) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Erro ao executar a query ALUNOS");
         } finally {
-            System.out.println(aluno);
-            System.out.println(raAluno);
-            System.out.println(turmaAluno);
+//            System.out.println(aluno);
+//            System.out.println(raAluno);
+//            System.out.println(turmaAluno);
             db.close();
         }
 
     }
+
+    public int selectTurma(String nome, int ra) {
+        openDB();
+
+        String selectTurma = "SELECT TURMA_ALUNO FROM " + TB_ALUNOS
+                + " WHERE NOME_ALUNO = '" + nome
+                + "' AND RA_ALUNO = '" + ra + "'";
+        int turma;
+        try {
+            Cursor c = db.rawQuery(selectTurma, null);
+
+            if (c.moveToFirst()) {
+                turma = c.getInt(0);
+                System.out.println("SUCESSO AO SELECIONAR TURMA");
+                return turma;
+
+            } else {
+                System.out.println("ERRO AO SELECIONAR A TURMA");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Erro ao executar a query select select Turma");
+        } finally {
+            db.close();
+        }
+        return 0;
+    }
+
+
 
 
     public ArrayList<Turmas> getTurmas() {

@@ -36,8 +36,6 @@ public class EditarTurma extends AppCompatActivity implements View.OnClickListen
         UniversidadeSelecionada = receberIntent.getStringExtra("universidade");
         CampusSelecionado = receberIntent.getStringExtra("campus");
 
-
-
         editTextNomeTurma.setText(TurmaSelecionada);
         editTextUniversidade.setText(UniversidadeSelecionada);
         editTextCampus.setText(CampusSelecionado);
@@ -64,6 +62,7 @@ public class EditarTurma extends AppCompatActivity implements View.OnClickListen
             startActivity(telaTurma);
 
         }
+        finish();
 
 
     }

@@ -1,9 +1,11 @@
 package br.edu.anhembi.gabaritando;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ListViewCompat;
 import android.support.v7.widget.Toolbar;
@@ -67,6 +69,114 @@ public class Alunos extends AppCompatActivity implements AdapterView.OnItemClick
 
         Read r = new Read(getApplicationContext());
         r.selectNomeAlunos(alunosArray, raArray, turmasArray);
+        alunosNomeList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder alerta = new AlertDialog.Builder(Alunos.this);
+                alerta.setTitle("Deseja editar ou deletar aluno?");
+                //alerta.setMessage("mensagem teste");
+                alerta.setCancelable(true);
+                alerta.setNegativeButton("Nao", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Toast.makeText(getApplicationContext(),"Nao escolhido",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alerta.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String alunoNomeEditar = alunosNomeList.getItemAtPosition(position).toString();
+                        String alunoRaEditar = alunosRaList.getItemAtPosition(position).toString();
+
+
+                        Intent EditarAluno = new Intent(Alunos.this, EditarAluno.class);
+                        int ra = Integer.parseInt(alunoRaEditar);
+                        Read read = new Read(getApplicationContext());
+                        int alunoTurmaEditar = read.selectTurma(alunoNomeEditar, ra);
+                        EditarAluno.putExtra("nome", alunoNomeEditar );
+                        EditarAluno.putExtra("ra", ra);
+                        EditarAluno.putExtra("turma", alunoTurmaEditar );
+                        startActivity(EditarAluno);
+                    }
+                });
+                AlertDialog alertDialog = alerta.create();
+                alertDialog.show();
+                return false;
+            }
+        });
+        alunosRaList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder alerta = new AlertDialog.Builder(Alunos.this);
+                alerta.setTitle("Deseja editar ou deletar aluno?");
+                //alerta.setMessage("mensagem teste");
+                alerta.setCancelable(true);
+                alerta.setNegativeButton("Nao", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Toast.makeText(getApplicationContext(),"Nao escolhido",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alerta.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String alunoNomeEditar = alunosNomeList.getItemAtPosition(position).toString();
+                        String alunoRaEditar = alunosRaList.getItemAtPosition(position).toString();
+
+
+                        Intent EditarAluno = new Intent(Alunos.this, EditarAluno.class);
+                        int ra = Integer.parseInt(alunoRaEditar);
+                        Read read = new Read(getApplicationContext());
+                        int alunoTurmaEditar = read.selectTurma(alunoNomeEditar, ra);
+                        EditarAluno.putExtra("nome", alunoNomeEditar );
+                        EditarAluno.putExtra("ra", ra);
+                        EditarAluno.putExtra("turma", alunoTurmaEditar );
+                        startActivity(EditarAluno);
+                    }
+                });
+                AlertDialog alertDialog = alerta.create();
+                alertDialog.show();
+                return false;
+            }
+        });
+        alunosTurmaList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder alerta = new AlertDialog.Builder(Alunos.this);
+                alerta.setTitle("Deseja editar ou deletar aluno?");
+                //alerta.setMessage("mensagem teste");
+                alerta.setCancelable(true);
+                alerta.setNegativeButton("Nao", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Toast.makeText(getApplicationContext(),"Nao escolhido",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alerta.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String alunoNomeEditar = alunosNomeList.getItemAtPosition(position).toString();
+                        String alunoRaEditar = alunosRaList.getItemAtPosition(position).toString();
+
+
+                        Intent EditarAluno = new Intent(Alunos.this, EditarAluno.class);
+                        int ra = Integer.parseInt(alunoRaEditar);
+                        Read read = new Read(getApplicationContext());
+                        int alunoTurmaEditar = read.selectTurma(alunoNomeEditar, ra);
+                        EditarAluno.putExtra("nome", alunoNomeEditar );
+                        EditarAluno.putExtra("ra", ra);
+                        EditarAluno.putExtra("turma", alunoTurmaEditar );
+                        startActivity(EditarAluno);
+                    }
+                });
+                AlertDialog alertDialog = alerta.create();
+                alertDialog.show();
+                return false;
+            }
+        });
     }
 
     @Override
