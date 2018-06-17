@@ -52,7 +52,8 @@
         <activity android:name=".RegistrarTurma" />
         <activity android:name=".RegistrarAluno" />
         <activity android:name=".CameraPrinted" />
-        <activity android:name=".CameraCaptured"></activity>
+        <activity android:name=".CameraCaptured" />
+        <activity android:name=".Resultado"></activity>
     </application>
 
 </manifest>

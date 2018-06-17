@@ -1,5 +1,6 @@
 package br.edu.anhembi.gabaritando;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ColorMatrix;
@@ -21,7 +22,7 @@ public class CameraCaptured extends AppCompatActivity implements View.OnClickLis
 
     Bitmap bitmap;
     ImageView imgView;
-    Button btnApplyFilter;
+    Button btnApplyFilter, btnSeeValues;
     ColorMatrixColorFilter cf;
     Mat rgba, edges;
 
@@ -31,13 +32,16 @@ public class CameraCaptured extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_camera_captured);
 
         btnApplyFilter = (Button) findViewById(R.id.btnApplyFilter);
+        btnSeeValues = (Button) findViewById(R.id.btnSeeValues);
+
+        btnSeeValues.setOnClickListener(this);
         btnApplyFilter.setOnClickListener(this);
 
         Bundle extras = getIntent().getExtras();
         byte[] photo = extras.getByteArray("photo");
 
-        bitmap  = BitmapFactory.decodeByteArray (photo, 0, photo.length);
-        imgView = (ImageView)findViewById(R.id.imgPreview);
+        bitmap = BitmapFactory.decodeByteArray(photo, 0, photo.length);
+        imgView = (ImageView) findViewById(R.id.imgPreview);
 
         ColorMatrix matrix = new ColorMatrix();
         matrix.setSaturation(0);
@@ -51,22 +55,29 @@ public class CameraCaptured extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
-    public void onClick(View v) {
-        /*imgView.setColorFilter(cf);
-        imgView.setImageAlpha(128);*/
+    public void onClick(View view) {
+        if (view.getId() == R.id.btnApplyFilter) {
+            /*imgView.setColorFilter(cf);
+            imgView.setImageAlpha(128);*/
 
-        rgba = new Mat();
-        Utils.bitmapToMat(bitmap, rgba);
+            rgba = new Mat();
+            Utils.bitmapToMat(bitmap, rgba);
 
-        edges = new Mat(rgba.size(), CvType.CV_8UC1);
+            edges = new Mat(rgba.size(), CvType.CV_8UC1);
 
-        Imgproc.cvtColor(rgba, edges, Imgproc.COLOR_RGB2GRAY, 4);
-        Imgproc.Canny(edges, edges, 80, 100);
+            Imgproc.cvtColor(rgba, edges, Imgproc.COLOR_RGB2GRAY, 4);
+            Imgproc.Canny(edges, edges, 80, 100);
 
-        BitmapHelper.showBitmap(this, bitmap, imgView);
-        Bitmap resultBitmap = Bitmap.createBitmap(edges.cols(), edges.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(edges, resultBitmap);
-        BitmapHelper.showBitmap(this, resultBitmap, imgView);
+            BitmapHelper.showBitmap(this, bitmap, imgView);
+            Bitmap resultBitmap = Bitmap.createBitmap(edges.cols(), edges.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(edges, resultBitmap);
+            BitmapHelper.showBitmap(this, resultBitmap, imgView);
 
+            btnSeeValues.setVisibility(View.VISIBLE);
+
+        } else if (view.getId() == R.id.btnSeeValues) {
+            Intent telaResultados = new Intent(this, Resultado.class);
+            startActivity(telaResultados);
+        }
     }
 }
