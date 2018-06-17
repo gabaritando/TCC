@@ -73,6 +73,7 @@ public class RegistrarAluno extends AppCompatActivity implements View.OnClickLis
         } else {
             Toast.makeText(this, "Erro ao cadastrar aluno!", Toast.LENGTH_SHORT).show();
         }
+        finish();
     }
 
     @Override

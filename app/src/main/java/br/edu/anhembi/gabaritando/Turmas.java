@@ -195,6 +195,7 @@ public class Turmas extends AppCompatActivity implements AdapterView.OnItemClick
     public void onClick(View view) {
         Intent registrarTurma = new Intent(this, RegistrarTurma.class);
         startActivity(registrarTurma);
+        finish();
     }
 
     public int getId() {
