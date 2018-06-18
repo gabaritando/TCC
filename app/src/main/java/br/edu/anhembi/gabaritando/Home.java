@@ -40,6 +40,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
         String emailHome = getIntent().getExtras().getString("exibirNome"); //recebendo o nome do usuario
+
         Read r = new Read(getApplicationContext());
 
         //esse trecho de codigo seleciona apenas o primeiro nome do usuario

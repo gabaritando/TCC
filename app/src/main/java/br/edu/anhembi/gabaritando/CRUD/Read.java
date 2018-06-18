@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import br.edu.anhembi.gabaritando.Alunos;
 import br.edu.anhembi.gabaritando.Docente;
 import br.edu.anhembi.gabaritando.Turmas;
 
@@ -204,6 +205,34 @@ public class Read extends SQLiteOpenHelper {
         }
 
         return tArray;
+    }
+
+    public ArrayList<Alunos> getAlunos() {
+        openDB();
+        ArrayList<Alunos> aArray = new ArrayList<>();
+        String getAlunos = "SELECT ID_ALUNO, NOME_ALUNO FROM " + TB_ALUNOS;
+
+        try{
+            Cursor c = db.rawQuery(getAlunos, null);
+
+            if (c.moveToFirst()){
+                do {
+                    Alunos a = new Alunos();
+                    a.setId(c.getInt(0));
+                    a.setNome(c.getString(1));
+                    aArray.add(a);
+                } while(c.moveToNext());
+            }
+
+        } catch (Exception e){
+            System.out.println("NAO FOI");
+            e.printStackTrace();
+            return null;
+        } finally {
+            db.close();
+        }
+
+        return aArray;
     }
 
 

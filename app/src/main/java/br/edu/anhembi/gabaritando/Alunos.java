@@ -88,19 +88,31 @@ public class Alunos extends AppCompatActivity implements AdapterView.OnItemClick
         startActivity(registrarAluno);
     }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id; }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        this.id = id; }
 
-    public int getRa() { return ra; }
+    public int getRa() {
+        return ra; }
 
-    public void setRa(int ra) { this.ra = ra; }
+    public void setRa(int ra) {
+        this.ra = ra; }
 
-    public int getTurma() { return turma; }
+    public int getTurma() {
+        return turma; }
 
-    public void setTurma(int turma) { this.turma = turma; }
+    public void setTurma(int turma) {
+        this.turma = turma; }
 
-    public String getNome() { return nome; }
+    public String getNome() {
+        return nome; }
 
-    public void setNome(String nome) { this.nome = nome; }
+    public void setNome(String nome) {
+        this.nome = nome; }
+
+    public String toString(){
+        return nome;
+    }
 }
