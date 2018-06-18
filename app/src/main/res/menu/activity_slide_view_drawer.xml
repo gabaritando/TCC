@@ -7,25 +7,22 @@
             android:icon="@android:drawable/presence_invisible"
             android:title="Home" />
         <item
-            android:id="@+id/nav_turma"
-            android:icon="@android:drawable/presence_invisible"
-            android:title="Turma" />
-        <item
             android:id="@+id/nav_gabarito"
             android:icon="@android:drawable/presence_invisible"
             android:title="Gabarito" />
         <item
-            android:id="@+id/nav_perfil"
+            android:id="@+id/nav_turma"
             android:icon="@android:drawable/presence_invisible"
-            android:title="Perfil" />
+            android:title="Turma" />
+        <item
+            android:id="@+id/nav_aluno"
+            android:icon="@android:drawable/presence_invisible"
+            android:title="Aluno" />
+
     </group>
 
     <item android:title="Mais">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@android:drawable/presence_invisible"
-                android:title="Compartilhe" />
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@android:drawable/presence_invisible"

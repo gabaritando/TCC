@@ -7,7 +7,7 @@
     tools:context=".RegistrarTurma">
 
     <TextView
-        android:id="@+id/txtViewRegTurma"
+        android:id="@+id/txtViewEditarTurma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="54dp"
@@ -34,7 +34,7 @@
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtViewRegTurma" />
+        app:layout_constraintTop_toBottomOf="@+id/txtViewEditarTurma" />
 
     <EditText
         android:id="@+id/editTextUniversidade"

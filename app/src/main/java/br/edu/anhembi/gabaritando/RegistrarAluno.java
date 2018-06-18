@@ -31,7 +31,7 @@ public class RegistrarAluno extends AppCompatActivity implements View.OnClickLis
 
         editTextNomeAluno = (EditText) findViewById(R.id.editTextNomeAluno);
         editTextRA = (EditText) findViewById(R.id.editTextRA);
-        btnRegisterAluno = (Button) findViewById(R.id.btnRegisterAluno);
+        btnRegisterAluno = (Button) findViewById(R.id.btnEditarAluno);
 
         Read r = new Read(getApplicationContext());
 
@@ -73,6 +73,7 @@ public class RegistrarAluno extends AppCompatActivity implements View.OnClickLis
         } else {
             Toast.makeText(this, "Erro ao cadastrar aluno!", Toast.LENGTH_SHORT).show();
         }
+        finish();
     }
 
     @Override
