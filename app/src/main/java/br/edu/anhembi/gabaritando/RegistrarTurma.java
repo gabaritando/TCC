@@ -49,6 +49,7 @@ public class RegistrarTurma extends AppCompatActivity implements View.OnClickLis
         } else {
             Toast.makeText(this, "Erro ao cadastrar turma!", Toast.LENGTH_SHORT).show();
         }
+        finish();
 
     }
 }

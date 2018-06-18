@@ -58,5 +58,6 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
                 Toast.makeText(this, "Usuário ou senha incorreto!", Toast.LENGTH_SHORT).show();
             }
         }
+        finish();
     }
 }
